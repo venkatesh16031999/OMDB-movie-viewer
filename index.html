@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+    <title>Document</title>
+
+    <style>
+    
+    .fontpara{
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    body{
+        background-color: lightsteelblue;
+    }
+    
+    </style>
+
+</head>
+<body>
+
+    <div id="drop">
+        <div class="row d-flex justify-content-center">
+            <h1>OMDB MOVIE PAGE</h1>
+        </div>
+        <br>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" v-model="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0"  v-on:click="searchFunction()" type="button">Search</button>
+                  </form>
+            </div>
+        </div>
+        <br>
+        <div class="row d-flex justify-content-center d-flex justify-content-center">
+            <div class="card col-md-11" style="box-shadow: 1px 1px 3px grey; ">
+                <div class="d-flex justify-content-center align-items-center" style="height: 50vh;" v-if="moviedetails[0]==null">
+                    <h1>Search for Movie</h1>
+                </div>
+                <div v-if="moviedetails.length!==0" >
+                    <br>
+                    <h1> Movie Name : {{ moviedetails[0].Title }}</h1>
+                    <hr>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-3">
+                            <img v-bind:src="moviedetails[0].Poster" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p class="fontpara">Year : {{moviedetails[0].Year}}</p>
+                                </div> 
+                                 <div class="col-md-3">
+                                     <p class="fontpara">Released : {{moviedetails[0].Released}}</p>
+                                    
+                                </div>
+                                <div class="col-md-7">
+                                    <p class="fontpara">Genre : {{moviedetails[0].Genre}}</p>
+                                    
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p class="fontpara">BoxOffice : {{moviedetails[0].BoxOffice}}</p>
+                                    
+                                </div> 
+                                 <div class="col-md-5">
+                                    <p class="fontpara">Production : {{moviedetails[0].Production}}</p>
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="fontpara">Director : {{moviedetails[0].Director}}</p> 
+                                    
+                                </div>
+                            </div>
+                            <h3>Writer</h3>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="fontpara">Writer : {{moviedetails[0].Writer}}</p>
+                                </div> 
+                                
+                            </div>
+
+                            <h2>Rattings : </h2>
+                            <hr>
+                            <div class="row">
+                                <!-- {{}} -->
+                                <div class="col-md-12" v-for="(Rating,index) in moviedetails[0].Ratings">
+                                   
+                                    <div class="row">
+                                        <div class="col md-8">
+                                            <h5> Rating Source : {{Rating.Source}}</h5>
+                                        </div>
+                                        <div class="col md-4">
+                                            <h5> Rating Value : {{Rating.Value}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+    <script src="./vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
